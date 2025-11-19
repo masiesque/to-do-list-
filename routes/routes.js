@@ -1,7 +1,8 @@
 const routes = require("express").Router();
 const metodosController = require("../controllers/taskController");
 
-routes.get('/home',metodosController.getAll )
+routes.get('/',metodosController.getAllTask );
+routes.post('/create',metodosController.createTask);
 
 module.exports= routes;
 
