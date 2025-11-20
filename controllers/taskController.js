@@ -4,7 +4,7 @@ const Task = require('../models/task');
 const getAllTask = async (req, res)=>{
     try{
         const tasklist = await Task.find();
-        return res.render("index", tasklist);
+        return res.render("index", {tasklist});
 
     }catch(err)
     {

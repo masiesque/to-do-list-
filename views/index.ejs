@@ -17,6 +17,16 @@
         </form>
 
 
+        
+        <ul>
+            <% tasklist.forEach((task)=>{%>
+
+            <li> <%= task.task %> | <%= task.date%> </li>
+                
+            <% })%> 
+        </ul>
+       
+
 
 
      <script src="/script.js"></script>
