@@ -29,6 +29,36 @@ const createTask = async (req, res) => {
 const getById = async (req, res) => {
     try 
     {
+      
+        const tasklist = await Task.find();
+        if(req.params.method == uptade)
+        {
+              const task = await Task.findOne({ _id: req.params.id });
+             return res.render("index", { tasklist, task, taskDelete: null });
+        }else
+        {
+            const taskDelete = await Task.findOne({ _id: req.params.id });
+             return res.render("index", { tasklist, task: null, taskDelete });
+        }
+    } catch (err) {
+        return res.status(500).json({ error: "Erro ao encontrar ou renderizar a página" });
+    }
+}
+const updateOneTask = async (req, res)=>
+{
+    try{
+        const task = req.body;
+        await Task.updateOne({_id:req.params.id}, task);  
+        res.redirect('/');
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({error: err.message});
+    }
+}
+const deleteTask = async (req, res)=>
+{
+    try 
+    {
         const {task, taskDelete} = await Task.findOne({ _id: req.params.id });
         const tasklist = await Task.find();
         if(req.params.method == uptade)
@@ -42,32 +72,11 @@ const getById = async (req, res) => {
         return res.status(500).json({ error: "Erro ao encontrar ou renderizar a página" });
     }
 }
-const updateOneTask = async (req, res)=>
-{
-    try{
-        const task = req.body;
-        await Task.updateOne({_id:req.params.id}, task);
-        res.redirect('/');
-    }catch(err){
-        console.log(err);
-        return res.status(500).json({error: err.message});
-    }
-}
-const deleteTask = async (req, res)=>
-{
-    try{
-        const task = 
-
-    }catch(err)
-    {
-        onsole.log(err);
-        return res.status(500).json({error: err.message});
-    }
-}
 
 module.exports ={
     getAllTask,
     createTask,
     getById,
    updateOneTask,
+   deleteTask,
 };
