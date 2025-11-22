@@ -37,7 +37,7 @@
             <% })%> 
         </ul>
        
-        </section>
+        </section>   
         <% if(taskDelete !=null){%>
         <section id="modal">
             <div id="card">
@@ -47,7 +47,7 @@
                 <hr>
                 <p>Deseja realmente deletar a tarefa <%= taskDelete.task%>? </p>
                 <a href="/">Cancelar</a>
-                <a href="deleteTask/ <%= taskDelete.task%>">Confirmar</a>
+                <a href="/deleteTask/<%= taskDelete._id %>">Confirmar</a>
             </div>
 
         </section>
